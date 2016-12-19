@@ -16,7 +16,7 @@ class HorseListPageCrawler:
 
     def getFirstPage(self):
         self.current_page = 1
-        params = [('pid', 'horse_list'), ('under_age', 2), ('sort', 'prize'), ('list', self.list_size)]
+        params = [('pid', 'horse_list'), ('under_age', 2), ('sort', 'prize'), ('list', self.list_size)]  # Modify this depending on your needs
         data = urllib.urlencode(params)
         req = urllib2.Request(self.URL, data)
         res = urllib2.urlopen(req)
@@ -41,7 +41,7 @@ class HorseListPageCrawler:
             return self.getFirstPage()
         self.current_page = page
         enc_serial = urllib.quote(self.serial.encode('euc-jp'), safe='')
-        params = {"sort_key": self.sort_key, "sort_type": self.sort_type, "page": self.current_page, "pid": "horse_list"}
+        params = {"sort_key": self.sort_key, "sort_type": self.sort_type, "page": self.current_page, "pid": "horse_list"}  # Modify this depending on your needs
         data = urllib.urlencode(params)
         data = data + "&serial=" + enc_serial
         req = urllib2.Request(self.URL, data)
