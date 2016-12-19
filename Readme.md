@@ -23,6 +23,7 @@ $ python getdata.py [--max_page num_of_pages] [--output output_filename]
 - id
 - name
 - sex
+- birth_year
 - stable
 - sire
 - mare

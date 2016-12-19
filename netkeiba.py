@@ -121,6 +121,7 @@ class HorseDataParser:
             name = data[1].string
             hid = data[1].a.get("href").replace("/horse/", "")[:-1]
             sex = data[2].string
+            birth_year = int(data[3].a.string)
             if data[5].a:
                 stable = data[5].a.string
             else:
@@ -146,7 +147,7 @@ class HorseDataParser:
             else:
                 breeder = data[10].string
             prize = float(data[11].string.replace(",", ""))
-            result.append({"hid": hid, "name": unicode(name), "sex": unicode(sex), "stable": unicode(stable), "sire": unicode(sire), "mare": unicode(mare), "bms": unicode(bms), "owner": unicode(owner), "breeder": unicode(breeder), "prize": prize})
+            result.append({"hid": hid, "name": unicode(name), "sex": unicode(sex), "birth_year": birth_year, "stable": unicode(stable), "sire": unicode(sire), "mare": unicode(mare), "bms": unicode(bms), "owner": unicode(owner), "breeder": unicode(breeder), "prize": prize})
         return result
 
     def parse_horse_prof(self, html):
