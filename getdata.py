@@ -13,13 +13,13 @@ data = []
 page = 1
 
 crawler = netkeiba.HorseListPageCrawler(listSize=100)
-print 'Getting page', page, '...'
+print ('Getting page', page, '...')
 try:
     html = crawler.getFirstPage()
 except Exception as e:
-    print e.message
+    print (e.message)
     html = None
-if html is not None:
+if html:
     # print html
     parser = netkeiba.HorseDataParser()
     data_in_page = parser.parse_horse_list(html)
@@ -27,19 +27,19 @@ if html is not None:
         data.extend(data_in_page)
         # print data_in_page
         for d in data_in_page:
-            print d['name']
+            print (d['name'])
         # print len(data_in_page)
-        print 'Number of data=', len(data)
+        print ('Number of data=', len(data))
 
 if args.max_page < 0 or page < args.max_page:
     while crawler.haveNextPage():
         sleep(args.interval)
         page += 1
-        print 'Getting page', page, '...'
+        print ('Getting page', page, '...')
         try:
             html = crawler.getNextPage()
         except Exception as e:
-            print e.message
+            print (e.message)
             html = None
         if html is not None:
             # print html
@@ -48,9 +48,9 @@ if args.max_page < 0 or page < args.max_page:
                 data.extend(data_in_page)
                 # print data_in_page
                 for d in data_in_page:
-                    print d['name']
+                    print (d['name'])
                 # print len(data_in_page)
-                print 'Number of data=', len(data)
+                print ('Number of data=', len(data))
             if args.max_page >= 0 and page >= args.max_page:
                 break
 
@@ -58,4 +58,4 @@ if args.output:
     with open(args.output, "w") as f:
         pickle.dump(data, f)
 
-print 'done.'
+print ('done.')
